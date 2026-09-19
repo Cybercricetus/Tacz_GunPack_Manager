@@ -48,6 +48,18 @@ python3 -m venv .venv
 .venv/bin/python -m pip install .
 ```
 
+如果 Windows 上 `py -0p` 只列出 Python 3.9/3.10，请先安装 Python 3.11
+或更新版本。项目使用 `asyncio.TaskGroup`，不支持已经停止维护的 Python 3.9。
+如果错误版本已经创建了 `.venv`，请先退出并重建：
+
+```powershell
+deactivate
+Remove-Item -LiteralPath .venv -Recurse -Force
+.\install.ps1
+```
+
+新版安装脚本会明确选择 3.11+，并在任何 `pip` 命令失败时立即停止，不会再错误地输出安装成功。
+
 ## 首次初始化
 
 传入 `tacz` 目录、`.minecraft` 目录或实例根目录：
